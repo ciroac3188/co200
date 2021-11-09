@@ -3,8 +3,8 @@ import { Card, CardHeader, CardBody, CardTitle, Row, Col } from "reactstrap";
 import axios from "axios";
 import DefaultTable from "../../components/defaultTable/defaultable";
 import DefaultButtom from "../../components/defaultButton/defaultButtom";
-import ModalcreateProduct from "../../components/modal/modalcreateproduct";
-import ModalupdateProduct from "../../components/modal/modalupdateproducto";
+import ModalcreateSale from "../../components/modal/modalcreatesale";
+import ModalupdateSale from "../../components/modal/modalupdatesale";
 
 const dataMenus = [
   {
@@ -13,23 +13,35 @@ const dataMenus = [
   },
   {
     id: 2,
-    col: "DESCRIPCION",
+    col: "ID CLIENTE",
   },
   {
     id: 3,
-    col: "VALOR U",
+    col: "NOMBRE CLIENTE",
   },
   {
     id: 4,
+    col: "FECHA-FAC",
+  },
+  {
+    id: 5,
     col: "ESTADO",
   },
   {
-    id: 4,
+    id: 6,
+    col: "ID PRODUCTO",
+  },
+  {
+    id: 7,
+    col: "VALOR TOTAL",
+  },
+  {
+    id: 8,
     col: "ACTIONS",
   },
 ];
 
-const GestionProductos = () => {
+const GestionVentas = () => {
   const [showCreate, setShowCreate] = useState(false);
   const handleCreateClose = () => setShowCreate(false);
   const handleCreateShow = () => setShowCreate(true);
@@ -37,53 +49,53 @@ const GestionProductos = () => {
   const [showUpdate, setShowUpdate] = useState(false);
   const handleUpdateClose = () => setShowUpdate(false);
 
-  const [products, setProducts] = useState([]);
-  const [productRecord, setProductRecord] = useState({
-    producto: "",
+  const [sales, setSales] = useState([]);
+  const [saleRecord, setSaleRecord] = useState({
+    clienteNombre: "",
   });
 
   async function handleUpdateShow(record) {
     console.log("record a cargar...");
-    console.log(record.producto);
-    setProductRecord(record);
+    console.log(record.saleo);
+    setSaleRecord(record);
     setShowUpdate(true);
   }
 
-  async function addProduct(product) {
-    console.log(product);
-    axios.post("http://localhost:3010/api/v1/product/add", product);
+  async function addSale(sale) {
+    console.log(sale);
+    axios.post("http://localhost:3010/api/v1/sale/add", sale);
     handleCreateClose();
-    listProducts();
+    listSales();
   }
 
-  async function listProducts() {
+  async function listSales() {
     try {
       console.log("a buscar la lista..");
-      axios.get("http://localhost:3010/api/v1/product/list").then((resp) => {
-        setProducts(resp.data.products);
-        console.log(resp.data.products);
+      axios.get("http://localhost:3010/api/v1/sale/list").then((resp) => {
+        setSales(resp.data.sales);
+        console.log(resp.data.sales);
       });
     } catch (e) {
       console.log(e);
     }
   }
 
-  async function deleteProduct(idProduct) {
-    console.log("preparando el borrado..." + idProduct);
-    axios.delete("http://localhost:3010/api/v1/product/delete/" + idProduct);
-    listProducts();
+  async function deleteSale(idSale) {
+    console.log("preparando el borrado..." + idSale);
+    axios.delete("http://localhost:3010/api/v1/sale/delete/" + idSale);
+    listSales();
   }
 
-  async function updateProduct(product) {
+  async function updateSale(sale) {
     console.log("preparando para actualizar...");
-    console.log(product);
-    axios.put("http://localhost:3010/api/v1/product/update", product);
+    console.log(sale);
+    axios.put("http://localhost:3010/api/v1/sale/update", sale);
     handleUpdateClose();
-    listProducts();
+    listSales();
   }
 
   useEffect(() => {
-    listProducts();
+    listSales();
   }, []);
 
   return (
@@ -93,48 +105,46 @@ const GestionProductos = () => {
           <Col md="12">
             <Card>
               <CardHeader>
-                <CardTitle tag="h5">Gestion de Productos</CardTitle>
-                <p className="card-category">
-                  Aqui podras crear tus productos{" "}
-                </p>
+                <CardTitle tag="h5">Gestion de Ventas</CardTitle>
+                <p className="card-category">Listado de Ventas </p>
               </CardHeader>
               <CardBody>
                 <Row>
                   <Col md="12">
                     <Card className="card-plain">
                       <CardHeader>
-                        <CardTitle tag="h6">Fomulario de productos</CardTitle>
+                        <CardTitle tag="h6">Fomulario de ventas</CardTitle>
                         <div>
                           <DefaultButtom
                             typebuttom={1}
-                            text={"Registrar Usuario"}
+                            text={"Registrar Venta"}
                             onClick={handleCreateShow}
                           />
                           <DefaultButtom
                             typebuttom={2}
                             text={"Buscar"}
-                            onClick={listProducts}
+                            onClick={listSales}
                           />
-                          <ModalcreateProduct
+                          <ModalcreateSale
                             show={showCreate}
                             handleClose={handleCreateClose}
-                            onSend={addProduct}
+                            onSend={addSale}
                           />
                         </div>
                       </CardHeader>
                       <CardBody>
                         <DefaultTable
-                          data={products}
+                          data={sales}
                           dataMenus={dataMenus}
                           option={2}
-                          onDeletebuttom={deleteProduct}
+                          onDeletebuttom={deleteSale}
                           onUpdateButton={handleUpdateShow}
                         />
-                        <ModalupdateProduct
-                          data={productRecord}
+                        <ModalupdateSale
+                          data={saleRecord}
                           show={showUpdate}
                           handleClose={handleUpdateClose}
-                          onSend={updateProduct}
+                          onSend={updateSale}
                         />
                       </CardBody>
                     </Card>
@@ -149,4 +159,4 @@ const GestionProductos = () => {
   );
 };
 
-export default GestionProductos;
+export default GestionVentas;
