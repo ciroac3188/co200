@@ -1,83 +1,90 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Card, CardHeader, CardBody, CardTitle, Row, Col } from "reactstrap";
-import axios from 'axios';
-import DefaultTable from '../../components/defaultTable/defaultable';
-import DefaultButtom from '../../components/defaultButton/defaultButtom';
-import ModalcreateUser from '../../components/modal/modalcreateuser'
-
-/*const datostemp = [
-  {
-    "_id": "61759320ab520d9b49aa7972",
-    "nombre": "Jusn Troconis",
-    "telefono": "3105249121",
-    "email": "jatroconis@gmail.com",
-    "rol": "admin",
-    "estado": "activo",
-    "__v": 0
-  }
-]*/
+import axios from "axios";
+import DefaultTable from "../../components/defaultTable/defaultable";
+import DefaultButtom from "../../components/defaultButton/defaultButtom";
+import ModalcreateProduct from "../../components/modal/modalcreateproduct";
+import ModalupdateProduct from "../../components/modal/modalupdateproducto";
 
 const dataMenus = [
   {
-    "id": 1,
-    "col": "ID"
+    id: 1,
+    col: "ID",
   },
   {
-    "id": 2,
-    "col": "DESCRIPCION"
+    id: 2,
+    col: "DESCRIPCION",
   },
   {
-    "id": 3,
-    "col": "VALOR U"
+    id: 3,
+    col: "VALOR U",
   },
   {
-    "id": 4,
-    "col": "ESTADO"
+    id: 4,
+    col: "ESTADO",
   },
   {
-    "id": 4,
-    "col": "ACTIONS"
-  }
-]
+    id: 4,
+    col: "ACTIONS",
+  },
+];
 
 const GestionProductos = () => {
+  const [showCreate, setShowCreate] = useState(false);
+  const handleCreateClose = () => setShowCreate(false);
+  const handleCreateShow = () => setShowCreate(true);
 
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [showUpdate, setShowUpdate] = useState(false);
+  const handleUpdateClose = () => setShowUpdate(false);
+
   const [products, setProducts] = useState([]);
+  const [productRecord, setProductRecord] = useState({
+    producto: "",
+  });
 
-
-  async function registerData(data) {
-    const response = await axios.post("http://localhost:3010/api/v1/product/add", data);
-    if (response.status === 201) {
-      listarData();
-    }
+  async function handleUpdateShow(record) {
+    console.log("record a cargar...");
+    console.log(record.producto);
+    setProductRecord(record);
+    setShowUpdate(true);
   }
 
-  async function getProduct(product) {
-    registerData(product);
-    handleClose();
+  async function addProduct(product) {
+    console.log(product);
+    axios.post("http://localhost:3010/api/v1/product/add", product);
+    handleCreateClose();
+    listProducts();
   }
 
-  async function listarData() {
+  async function listProducts() {
     try {
-      const response = await axios.get("http://localhost:3010/api/v1/product/list");
-      if (response.status === 200) {
-        const data = response.data;
-        setProducts(data)
-        console.log(data);
-
-      }
+      console.log("a buscar la lista..");
+      axios.get("http://localhost:3010/api/v1/product/list").then((resp) => {
+        setProducts(resp.data.products);
+        console.log(resp.data.products);
+      });
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
+  }
+
+  async function deleteProduct(idProduct) {
+    console.log("preparando el borrado..." + idProduct);
+    axios.delete("http://localhost:3010/api/v1/product/delete/" + idProduct);
+    listProducts();
+  }
+
+  async function updateProduct(product) {
+    console.log("preparando para actualizar...");
+    console.log(product);
+    axios.put("http://localhost:3010/api/v1/product/update", product);
+    handleUpdateClose();
+    listProducts();
   }
 
   useEffect(() => {
-    listarData();
+    listProducts();
   }, []);
-
 
   return (
     <>
@@ -98,12 +105,32 @@ const GestionProductos = () => {
                       <CardHeader>
                         <CardTitle tag="h6">Fomulario de productos</CardTitle>
                         <div>
-                          <DefaultButtom typebuttom={1} text={"Registrar Usuario"} onClick={handleShow} />
-                          <ModalcreateUser show={show} handleClose={handleClose} onSend={getProduct} />
+                          <DefaultButtom
+                            typebuttom={1}
+                            text={"Registrar Usuario"}
+                            onClick={handleCreateShow}
+                          />
+                          <DefaultButtom
+                              typebuttom={2}
+                              text={"Buscar"}
+                              onClick={listProducts}
+                            />
+                          <ModalcreateProduct
+                            show={showCreate}
+                            handleClose={handleCreateClose}
+                            onSend={addProduct}
+                          />
                         </div>
                       </CardHeader>
                       <CardBody>
-                        <DefaultTable data={products} dataMenus={dataMenus} option={2} /> {/* TABLA DE GESTION DE USUARIOS*/}
+                        <DefaultTable
+                          data={products}
+                          dataMenus={dataMenus}
+                          option={2}
+                          onDeletebuttom={deleteProduct}
+                          onUpdateButton={handleUpdateShow}
+                        />
+                        <ModalupdateProduct data={productRecord} show={showUpdate} handleClose={handleUpdateClose} onSend={updateProduct} />
                       </CardBody>
                     </Card>
                   </Col>
@@ -112,10 +139,9 @@ const GestionProductos = () => {
             </Card>
           </Col>
         </Row>
-
       </div>
     </>
   );
-}
+};
 
 export default GestionProductos;

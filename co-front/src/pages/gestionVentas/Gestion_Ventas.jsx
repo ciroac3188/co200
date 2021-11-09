@@ -1,6 +1,10 @@
-import { Card, CardHeader, CardBody, CardTitle, Row, Col} from "reactstrap";
-import DefaultTable from '../../components/defaultTable/defaultable';
-
+import React, { useState, useEffect } from "react";
+import { Card, CardHeader, CardBody, CardTitle, Row, Col } from "reactstrap";
+import axios from "axios";
+import DefaultTable from "../../components/defaultTable/defaultable";
+import DefaultButtom from "../../components/defaultButton/defaultButtom";
+import ModalcreateSale from "../../components/modal/modalcreatesale";
+import ModalupdateSale from "../../components/modal/modalupdatesale";
 
 const Ventas = () => {
 
@@ -11,11 +15,11 @@ const data = [
     },
     {
         "id" : 2,
-        "col" : "IDEN"
+        "col" : "ID CLIENTE"
     },
     {
         "id" : 3,
-        "col" : "NOMBRE"
+        "col" : "NOMBRE CLIENTE"
     },
     {
         "id" : 4,
@@ -23,15 +27,15 @@ const data = [
     },
     {
         "id" : 5,
-        "col": "FECHA-PAG"
+        "col": "ESTADO"
     },
     {
         "id" : 6,
-        "col": "VENDEDOR"
+        "col": "ID PRODUCTO"
     },
     {
         "id" : 7,
-        "col": "ESTADO"
+        "col": "VALOR TOTAL"
     },
     {
         "id" : 8,
