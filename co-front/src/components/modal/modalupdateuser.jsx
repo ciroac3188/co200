@@ -1,51 +1,41 @@
-import React from 'react'
-import {Form, Modal} from 'react-bootstrap'
-import DefaultButtom from '../defaultButton/defaultButtom'
+import React from 'react';
+import {Form, Modal} from 'react-bootstrap';
+import DefaultButtom from '../defaultButton/defaultButtom';
+import Inputform from '../../components/inputform/inputform3';
 
+const ModalupdateUser = ({data, show, handleClose, onSend}) => {
 
-const ModalupdateUser = ({show,handleClose}) => {
+    const sendData = () => {
+        const json = {
+            _id: data._id,
+            nombre : document.getElementById('nombreUpdate').value,
+            telefono : document.getElementById('telefonoUpdate').value,
+            rol : document.getElementById('rolUpdate').value,
+            email : document.getElementById('emailUpdate').value,
+            estado : document.getElementById('estadoUpdate').value
+        };
+        console.log("sendData...");
+        console.log(json);
+        onSend(json);
+    }
+
     return (
         <>
         <Modal show={show} >
-            <Form> 
+            <Form method="post" > 
                 <Modal.Header >
                     <Modal.Title>Editar Usuario</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                {/* {AQUI IRA EL FORMULARIO} */}
-                    <Form.Group className="mb-3" controlId="id">
-                        <Form.Label>Id</Form.Label>
-                        <Form.Control type="text" placeholder="Ingrese id" />
-                    </Form.Group>
-
-                    <Form.Group className="mb-3" controlId="nombre">
-                        <Form.Label>Nombre</Form.Label>
-                        <Form.Control type="text" placeholder="Ingrese Nombre" />
-                    </Form.Group>
-
-                    <Form.Group className="mb-3" controlId="telefono">
-                        <Form.Label>Telefono</Form.Label>
-                        <Form.Control type="text" placeholder="Ingrese Telefono" />
-                    </Form.Group>
-
-                    <Form.Group className="mb-3" controlId="mail">
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control type="text" placeholder="Ingrese Email" />
-                    </Form.Group>
-
-                    <Form.Group className="mb-3" controlId="rol">
-                        <Form.Label>Rol</Form.Label>
-                        <Form.Control type="text" placeholder="Ingrese Rol" />
-                    </Form.Group>
-
-                    <Form.Group className="mb-3" controlId="estado">
-                        <Form.Label>Estado</Form.Label>
-                        <Form.Control type="text" placeholder="Ingrese Estado" />
-                    </Form.Group>
+                    <Inputform id="nombreUpdate" text="Nombre Completo:" value={data.nombre} type={1}/>
+                    <Inputform id="telefonoUpdate" text="Teléfono:" value={data.telefono} type={1}/>
+                    <Inputform id="emailUpdate" text="Email:" value={data.email} type={1} />
+                    <Inputform id="rolUpdate"  text="Rol:" value={data.rol} type={1} />
+                    <Inputform id="estadoUpdate" text="Estado:" value={data.estado} type={1} />
                 </Modal.Body>
                 <Modal.Footer>
-                    <DefaultButtom typebuttom={1} text={"Save Changes"} onClick={handleClose}  />
-                    <DefaultButtom typebuttom={2} text={"Close"} onClick={handleClose} />
+                    <DefaultButtom typebuttom={1} text={"Guardar Usuario"} onClick={sendData}/>
+                    <DefaultButtom typebuttom={2} text={"Cerrar"} onClick={handleClose} />
                 </Modal.Footer>
             </Form> 
         </Modal>                  
