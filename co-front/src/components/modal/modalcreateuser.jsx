@@ -3,7 +3,7 @@ import {Form, Modal} from 'react-bootstrap';
 import DefaultButtom from '../defaultButton/defaultButtom';
 import Inputform from '../../components/inputform/inputform2';
 
-const ModalcreateUser = ({show,handleClose, onSend}) => {
+const ModalcreateUser = ({show, handleClose, onSend}) => {
 
     const [nombreform, setNombreform] = useState("");
     const [telefonoform, setTelefonoform] = useState("");
@@ -49,8 +49,8 @@ const ModalcreateUser = ({show,handleClose, onSend}) => {
                     <Inputform text="Estado:" value={estadoform} defaultText={"Estado"} type={1} onChange={(e) => setEstadoform(e.target.value)}/>
                 </Modal.Body>
                 <Modal.Footer>
-                    <DefaultButtom typebuttom={1} text={"Registrar Usuario"} onClick={sendData}/>
-                    <DefaultButtom typebuttom={2} text={"Close"} onClick={handleClose} />
+                    <DefaultButtom typebuttom={1} text={"Guardar Usuario"} onClick={sendData}/>
+                    <DefaultButtom typebuttom={2} text={"Cerrar"} onClick={handleClose} />
                 </Modal.Footer>
             </Form> 
         </Modal>                  
