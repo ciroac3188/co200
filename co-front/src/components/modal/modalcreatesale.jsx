@@ -24,7 +24,7 @@ const ModalcreateSale = ({ show, handleClose, onSend }) => {
       productoId: productoIdform,
       productoCantidad: productoCantidadform,
       productoPrecio: productoPrecioform,
-      valorTotal: valorTotalform,
+      valorTotal: valorTotalform
     };
     console.log(clienteIdform + clienteNombreform);
     onSend(json);
@@ -48,29 +48,70 @@ const ModalcreateSale = ({ show, handleClose, onSend }) => {
       <Modal show={show}>
         <Form method="post">
           <Modal.Header>
-            <Modal.Title>Registrar Usuario</Modal.Title>
+            <Modal.Title>Registrar Venta</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Inputform
-              text="Venta:"
-              value={ventaform}
-              defaultText={"Venta"}
+              text="Id Cliente:"
+              value={clienteIdform}
+              defaultText={"Id Cliente"}
               type={1}
-              onChange={(e) => setVentaform(e.target.value)}
+              onChange={(e) => setClienteIdform(e.target.value)}
             />
             <Inputform
-              text="Valor Unitario:"
-              value={valorform}
-              defaultText={"Valor Unitario"}
+              text="Nombre Cliente:"
+              value={clienteNombreform}
+              defaultText={"Nombre Cliente"}
               type={1}
-              onChange={(e) => setValorform(e.target.value)}
+              onChange={(e) => setClienteNombreform(e.target.value)}
+            />
+            <Inputform
+              text="Fecha venta:"
+              value={ventaFechaform}
+              defaultText={"Fecha venta"}
+              type={1}
+              onChange={(e) => setVentaFechaform(e.target.value)}
+            />
+            <Inputform
+              text="Id Vendedor:"
+              value={idVendedorform}
+              defaultText={"Id Vendedor"}
+              type={1}
+              onChange={(e) => setIdVendedorform(e.target.value)}
             />
             <Inputform
               text="Estado:"
-              value={estadoform}
+              value={ventaEstadoform}
               defaultText={"Estado"}
               type={1}
-              onChange={(e) => setEstadoform(e.target.value)}
+              onChange={(e) => setVentaEstadoform(e.target.value)}
+            />
+            <Inputform
+              text="Id Producto:"
+              value={productoIdform}
+              defaultText={"Id Producto"}
+              type={1}
+              onChange={(e) => setProductoIdform(e.target.value)}
+            />
+            <Inputform
+              text="Cantidad:"
+              value={productoCantidadform}
+              defaultText={"Cantidad"}
+              type={1}
+              onChange={(e) => setProductoCantidadform(e.target.value)}
+            />
+            <Inputform
+              text="Precio Unidad:"
+              value={productoPrecioform}
+              defaultText={"Precio unidad"}
+              type={1}
+              onChange={(e) => setProductoPrecioform(e.target.value)}
+            />
+            <Inputform
+              text="Valor Total:"
+              value={productoCantidadform * productoPrecioform}
+              defaultText={"Valor Total"}
+              type={1}
             />
           </Modal.Body>
           <Modal.Footer>

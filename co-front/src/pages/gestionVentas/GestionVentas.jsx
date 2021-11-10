@@ -136,7 +136,7 @@ const GestionVentas = () => {
                         <DefaultTable
                           data={sales}
                           dataMenus={dataMenus}
-                          option={2}
+                          option={3}
                           onDeletebuttom={deleteSale}
                           onUpdateButton={handleUpdateShow}
                         />
