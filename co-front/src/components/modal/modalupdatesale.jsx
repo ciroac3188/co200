@@ -33,55 +33,55 @@ const ModalupdateSale = ({ data, show, handleClose, onSend }) => {
               id="clienteIdUpdate"
               text="Id Cliente:"
               value={data.clienteId}
-              type={1}
+              type="text"
             />
             <Inputform
             id="clienteNombreUpdate"
               text="Nombre Cliente:"
               value={data.clienteNombre}
-              type={1}
+              type="text"
             />
             <Inputform
             id="ventaFacturaUpdate"
               text="Fecha venta:"
               value={data.ventaFecha}
-              type={1}
+              type="date"
             />
             <Inputform
             id="idVendedorUpdate"
               text="Id Vendedor:"
-              value={data.vendedorId}
-              type={1}
+              value={data.idVendedor}
+              type="text"
             />
             <Inputform
             id="estadoVentaUpdate"
               text="Estado:"
               value={data.ventaEstado}
-              type={1}
+              type="text"
             />
             <Inputform
             id="productoIdUpdate"
               text="Id Producto:"
               value={data.productoId}
-              type={1}
+              type="text"
             />
             <Inputform
             id="productoCantidadUpdate"
               text="Cantidad:"
               value={data.productoCantidad}
-              type={1}
+              type="number"
             />
             <Inputform
             id="productoPrecioUpdate"
               text="Precio Unidad:"
               value={data.productoPrecio}
-              type={1}
+              type="number"
             />
             <Inputform
             id="valorTotalUpdate"
               text="Valor Total:"
               value={data.productoCantidad * data.productoPrecio}
-              type={1}
+              type="number"
             />
           </Modal.Body>
           <Modal.Footer>

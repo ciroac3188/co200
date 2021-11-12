@@ -30,28 +30,28 @@ const ModalcreateProduct = ({ show, handleClose, onSend }) => {
       <Modal show={show}>
         <Form method="post">
           <Modal.Header>
-            <Modal.Title>Registrar Usuario</Modal.Title>
+            <Modal.Title>Registrar Producto</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Inputform
               text="Producto:"
               value={productoform}
               defaultText={"Producto"}
-              type={1}
+              type="text"
               onChange={(e) => setProductoform(e.target.value)}
             />
             <Inputform
               text="Valor Unitario:"
               value={valorform}
               defaultText={"Valor Unitario"}
-              type={1}
+              type="number"
               onChange={(e) => setValorform(e.target.value)}
             />
             <Inputform
               text="Estado:"
               value={estadoform}
               defaultText={"Estado"}
-              type={1}
+              type="text"
               onChange={(e) => setEstadoform(e.target.value)}
             />
           </Modal.Body>
