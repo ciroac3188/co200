@@ -107,7 +107,7 @@ const GestionProductos = () => {
                         <div>
                           <DefaultButtom
                             typebuttom={1}
-                            text={"Registrar Usuario"}
+                            text={"Registrar Producto"}
                             onClick={handleCreateShow}
                           />
                           <DefaultButtom

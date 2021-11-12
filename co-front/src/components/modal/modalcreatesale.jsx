@@ -55,63 +55,63 @@ const ModalcreateSale = ({ show, handleClose, onSend }) => {
               text="Id Cliente:"
               value={clienteIdform}
               defaultText={"Id Cliente"}
-              type={1}
+              type="text"
               onChange={(e) => setClienteIdform(e.target.value)}
             />
             <Inputform
               text="Nombre Cliente:"
               value={clienteNombreform}
               defaultText={"Nombre Cliente"}
-              type={1}
+              type="text"
               onChange={(e) => setClienteNombreform(e.target.value)}
             />
             <Inputform
               text="Fecha venta:"
               value={ventaFechaform}
               defaultText={"Fecha venta"}
-              type={1}
+              type="date"
               onChange={(e) => setVentaFechaform(e.target.value)}
             />
             <Inputform
               text="Id Vendedor:"
               value={idVendedorform}
               defaultText={"Id Vendedor"}
-              type={1}
+              type="text"
               onChange={(e) => setIdVendedorform(e.target.value)}
             />
             <Inputform
               text="Estado:"
               value={ventaEstadoform}
               defaultText={"Estado"}
-              type={1}
+              type="text"
               onChange={(e) => setVentaEstadoform(e.target.value)}
             />
             <Inputform
               text="Id Producto:"
               value={productoIdform}
               defaultText={"Id Producto"}
-              type={1}
+              type="text"
               onChange={(e) => setProductoIdform(e.target.value)}
             />
             <Inputform
               text="Cantidad:"
               value={productoCantidadform}
               defaultText={"Cantidad"}
-              type={1}
+              type="number"
               onChange={(e) => setProductoCantidadform(e.target.value)}
             />
             <Inputform
               text="Precio Unidad:"
               value={productoPrecioform}
               defaultText={"Precio unidad"}
-              type={1}
+              type="number"
               onChange={(e) => setProductoPrecioform(e.target.value)}
             />
             <Inputform
               text="Valor Total:"
               value={productoCantidadform * productoPrecioform}
               defaultText={"Valor Total"}
-              type={1}
+              type="number"
             />
           </Modal.Body>
           <Modal.Footer>
