@@ -1,6 +1,6 @@
 import { Switch, Route } from "react-router-dom";
 import { Redirect } from "react-router";
-import Login from "../components/Login/Login";
+//import Login from "../components/Login/Login";
 import Home from "../pages/home/Home";
 import Ventas from "../pages/gestionVentas/GestionVentas";
 import Productos from "../pages/gestionProductos/GestionProductos";
@@ -11,10 +11,8 @@ function Routes() {
     <Switch>
       <Route exact path="/">
         <Redirect to="" />
-          <Login/>
-        </Route>
-      <Route path="/home">
         <Home />
+        {/*<Login/>*/}
       </Route>
       <Route path="/ventas">
         <Ventas />
@@ -25,7 +23,7 @@ function Routes() {
       <Route path="/usuarios">
         <Usuarios />
       </Route>
-      
+
     </Switch>
   );
 }

@@ -8,7 +8,6 @@ verifyTypes = (req, res, next) => {
         telefono: joi.string().required(),
         rol: joi.string().required(),
         email: joi.string().optional(),
-        password: joi.string().required(),
         estado: joi.string().required(),
     });
     const {error} = user_joi.validate(req.body);
