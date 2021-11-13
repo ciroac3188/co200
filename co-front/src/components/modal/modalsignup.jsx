@@ -3,20 +3,18 @@ import { Form, Modal } from "react-bootstrap";
 import DefaultButtom from "../defaultButton/defaultButtom";
 import Inputform from "../../components/inputform/inputform2";
 
-const ModalcreateUser = ({ show, handleClose, onSend }) => {
+const ModalSignUp = ({ show, handleClose, onSend }) => {
   const [nombreform, setNombreform] = useState("");
   const [telefonoform, setTelefonoform] = useState("");
   const [emailform, setEmailform] = useState("");
-  const [rolform, setRolform] = useState("");
-  const [estadoform, setEstadoform] = useState("");
 
   const sendData = () => {
     const json = {
       nombre: nombreform,
       telefono: telefonoform,
-      rol: rolform,
+      rol: 'vendedor',
       email: emailform,
-      estado: estadoform,
+      estado: 'pendiente',
     };
     console.log(nombreform + telefonoform);
     onSend(json);
@@ -27,8 +25,6 @@ const ModalcreateUser = ({ show, handleClose, onSend }) => {
     setNombreform("");
     setTelefonoform("");
     setEmailform("");
-    setRolform("");
-    setEstadoform("");
   }
 
   return (
@@ -36,7 +32,7 @@ const ModalcreateUser = ({ show, handleClose, onSend }) => {
       <Modal show={show}>
         <Form method="post">
           <Modal.Header>
-            <Modal.Title>Registrar Usuario</Modal.Title>
+            <Modal.Title>Registro</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Inputform
@@ -60,25 +56,11 @@ const ModalcreateUser = ({ show, handleClose, onSend }) => {
               type={1}
               onChange={(e) => setEmailform(e.target.value)}
             />
-            <Inputform
-              text="Rol:"
-              value={rolform}
-              defaultText={"Rol"}
-              type={1}
-              onChange={(e) => setRolform(e.target.value)}
-            />
-            <Inputform
-              text="Estado:"
-              value={estadoform}
-              defaultText={"Estado"}
-              type={1}
-              onChange={(e) => setEstadoform(e.target.value)}
-            />
           </Modal.Body>
           <Modal.Footer>
             <DefaultButtom
               typebuttom={1}
-              text={"Guardar Usuario"}
+              text={"Enviar registro"}
               onClick={sendData}
             />
             <DefaultButtom
@@ -93,4 +75,4 @@ const ModalcreateUser = ({ show, handleClose, onSend }) => {
   );
 };
 
-export default ModalcreateUser;
+export default ModalSignUp;
