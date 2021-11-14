@@ -11,26 +11,21 @@ function Footer(props) {
           <nav className="footer-nav">
             <ul>
               <li>
-                <a href="https://github.com/egutierrez0323/co200" target="_blank">
+                <a href="https://github.com/ciroac3188/co200" rel="noreferrer" target="_blank">
                   Equipo 13 MisionTic 2022 
                 </a>
               </li>
               <li>
-                <a href="https://lms.misiontic2022udea.com/login/index.php" target="_blank">
+                <a href="https://lms.misiontic2022udea.com/login/index.php" rel="noreferrer" target="_blank">
                   UDEA.
-                </a>
-              </li>
-              <li>
-                <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.purina-latam.com%2Fpe%2Fpurina%2Fnota%2Fgatos%2F10-datos-curiosos-sobre-los-gatos&psig=AOvVaw21ycN3hsa3bWR7hduBDQdj&ust=1633923230752000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCKDV39H0vvMCFQAAAAAdAAAAABAD" target="_blank">
-                  Licenses
                 </a>
               </li>
             </ul>
           </nav>
           <div className="credits ml-auto">
             <div className="copyright">
-              &copy; {1900 + new Date().getYear()}, Elaborador por co200 {""}
-              <i className="fab fa-react" /> Equipo 13 co200
+              &copy; {1900 + new Date().getYear()}, Elaborador por CO200 {""}
+              <i className="fab fa-react" /> Equipo 13 CO200
             </div>
           </div>
         </Row>

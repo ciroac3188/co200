@@ -12,16 +12,16 @@ function Aside() {
             <i className="fab fa-react fa-2x"></i>
           </div>
         </a>
-        <a href="" className="simple-text logo-normal">
-          App Ventas co200
+        <a href="/" className="simple-text logo-normal">
+          CO200 electronics
         </a>
       </div>
       <div className="sidebar-wrapper">
         <ul className="nav">
           <li className="active ">
-            <Link to="/home">
+            <Link to="/">
               <i className="fas fa-home"></i>
-              <p>Dashboard</p>
+              <p>Home</p>
             </Link>
           </li>
           <li>
@@ -42,15 +42,12 @@ function Aside() {
               <p>Gestion Usuarios</p>
             </Link>
           </li>
-          <li>
+          {/*<li>
             <a href="./user.html">
               <i className="far fa-user"></i>
               <p>User Profile</p>
             </a>
-          </li>
-          <li>
-            
-          </li>
+          </li>*/}
         </ul>
       </div>
     </div>

@@ -108,7 +108,7 @@ const DefaultTable = ({ data, dataMenus, option, onDeletebuttom, onUpdateButton 
                                     <td>{datos.ventaFecha}</td>
                                     <td>{datos.ventaEstado}</td>
                                     <td>{datos.productoId}</td>
-                                    <td>{datos.productoCantidad}</td>
+                                    <td>{(datos.productoCantidad * datos.productoPrecio)}</td>
                                     <td>
                                         <DefaultButtom typebuttom={1} text={"EDITAR"} onClick={() => onUpdateButton(datos)} />  <br />
                                         <DefaultButtom typebuttom={2} text={"ELIMINAR"} onClick={() => deleteData(datos._id)} />
